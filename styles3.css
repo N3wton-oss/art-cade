@@ -3,16 +3,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'VT323', Arial, sans-serif;
 }
 
 body {
+    /* Fondo con gradiente para legibilidad y consistencia */
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/f.jpg'); 
     color: #ffffff;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    font-family: 'VT323', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Efecto Monitor CRT */
@@ -28,10 +32,10 @@ body::before {
     pointer-events: none;
 }
 
-/* --- ENCABEZADO --- */
+/* --- ENCABEZADO (Consistente con el resto del sitio) --- */
 header {
+    width: 100%;
     background: #111;
-    color: white;
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
@@ -40,15 +44,16 @@ header {
 }
 
 header h1 {
-    font-size: 40px;
+    font-size: 30px;
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
 .logo-header {
-    height: 70px;
+    height: 50px;
     width: auto;
+    image-rendering: pixelated;
 }
 
 nav a {
@@ -56,161 +61,140 @@ nav a {
     text-decoration: none;
     margin-left: 20px;
     font-size: 18px;
+    transition: 0.3s;
 }
 
-/* --- ESTRUCTURA DE MÁQUINA EXPENDEDORA --- */
+nav a:hover {
+    color: #ff00f2;
+    text-shadow: 0 0 8px #ff00f2;
+}
+
+/* --- DISEÑO DE LA BIBLIOTECA (MÁQUINAS) --- */
 .biblioteca-dual {
     display: flex;
     justify-content: center;
-    gap: 60px;
-    padding: 60px 20px;
-    min-height: 100vh;
+    flex-wrap: wrap; /* Permite que las máquinas bajen en móvil */
+    gap: 40px;
+    padding: 40px 20px;
+    width: 100%;
 }
 
 .vending-machine {
-    background: #1a1a1a;
-    border: 10px solid #333;
-    border-radius: 5px;
+    background: #222;
     width: 100%;
     max-width: 500px;
-    display: flex;
-    flex-direction: column; /* Organiza los elementos en vertical */
-    box-shadow: 15px 15px 0px #000;
-    min-height: 900px; /* Altura mínima para que no se encoja */
-    justify-content: space-between; /* Empuja el machine-bottom al final */
-}
-
-/* Letreros Luminosos con Animación */
-.machine-header {
-    background: #000;
-    padding: 15px;
-    font-size: 2rem;
-    text-align: center;
-    border-bottom: 5px solid #333;
-    animation: flicker 3s infinite;
-}
-
-@keyframes flicker {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-    20%, 24%, 55% { opacity: 0.7; text-shadow: none; }
-}
-
-.retro-machine .machine-header { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
-.modern-machine .machine-header { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
-
-/* Vitrina de Cristal */
-.machine-glass {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 20px;
+    border: 10px solid #444;
+    border-radius: 20px;
     position: relative;
-    border: 15px solid #222;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
-    flex-grow: 1; /* Ocupa todo el espacio sobrante entre el header y el bottom */
+    display: flex;
+    flex-direction: column;
 }
 
-.machine-glass::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
-    pointer-events: none;
+.machine-header {
+    background: #111;
+    color: #0f0;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.5rem;
+    border-bottom: 5px solid #333;
 }
 
-/* Grid de juegos interno */
+.machine-glass {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    height: 600px;
+    overflow-y: auto; /* Scroll interno para los juegos */
+    border: 15px solid #1a1a1a;
+    margin: 10px;
+}
+
+/* Grid de juegos ajustable */
 .contenedor-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 20px;
 }
 
-/* Tarjetas Estilo "Producto" */
 .tarjeta-juego {
     background: #111;
-    border: 1px solid #333;
+    border: 2px solid #333;
     padding: 10px;
-    transition: 0.3s;
     text-align: center;
+    transition: 0.3s;
+}
+
+.tarjeta-juego:hover {
+    border-color: #ff00f2;
+    transform: scale(1.05);
 }
 
 .tarjeta-juego img {
     width: 100%;
-    height: 130px;
-    object-fit: cover;
-    filter: brightness(0.7);
-    border: 1px solid #222;
+    height: 120px;
+    object-fit: cover; /* Evita deformación de los GIFs */
+    margin-bottom: 10px;
 }
 
-.tarjeta-juego:hover {
-    transform: translateY(-5px);
-    border-color: #fff;
+.tarjeta-juego h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
 }
 
-.tarjeta-juego:hover img {
-    filter: brightness(1.1);
+.btn-play {
+    background: #0f0;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    font-family: 'VT323', monospace;
+    cursor: pointer;
+    width: 100%;
 }
 
-/* Parte Inferior (La base roja que señalaste) */
+/* Partes inferiores de la máquina */
 .machine-bottom {
-    background: #222;
-    padding: 40px 25px; /* Más padding para darle peso visual */
-    min-height: 160px;   /* Altura fija para que nunca se encoja */
+    background: #111;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-top: 8px solid #333;
-    margin-top: auto;    /* Asegura que se pegue al fondo de la máquina */
 }
 
 .coin-slot {
     width: 40px; height: 60px;
     background: #333;
     border: 3px solid #111;
-    border-radius: 4px;
-    position: relative;
-}
-
-.coin-slot::after {
-    content: "";
-    position: absolute;
-    top: 10px; left: 12px;
-    width: 10px; height: 25px;
-    background: #000;
 }
 
 .push-door {
     background: #111;
     color: #333;
-    font-size: 1.8rem;
-    padding: 15px 45px;
+    padding: 10px 30px;
     border: 4px solid #2a2a2a;
-    text-shadow: 1px 1px #000;
-    font-weight: bold;
 }
 
-/* Colores de neón para cada máquina */
-.retro-machine { border-color: #ff00ff; box-shadow: 15px 15px 0px #000, 0 0 20px rgba(255, 0, 255, 0.1); }
-.modern-machine { border-color: #00ffff; box-shadow: 15px 15px 0px #000, 0 0 20px rgba(0, 255, 255, 0.1); }
+/* Colores Neón por Categoría */
+.retro-machine { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.2); }
+.modern-machine { border-color: #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
 
-.retro-machine .btn-play { border: 1px solid #ff00ff; color: #ff00ff; }
-.modern-machine .btn-play { border: 1px solid #00ffff; color: #00ffff; }
+/* --- RESPONSIVIDAD (MÓVIL) --- */
+@media (max-width: 850px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
 
-.btn-play {
-    background: transparent;
-    margin-top: 10px;
-    padding: 5px;
-    cursor: pointer;
-    font-family: 'VT323';
-    width: 100%;
-}
+    .biblioteca-dual {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.btn-play:hover {
-    background: white;
-    color: black;
-}
+    .vending-machine {
+        max-width: 95%; /* La máquina ocupa casi todo el ancho del celular */
+    }
 
-/* Responsivo */
-@media (max-width: 1000px) {
-    .biblioteca-dual { flex-direction: column; align-items: center; gap: 40px; }
-    .vending-machine { max-width: 95%; min-height: auto; }
+    .machine-glass {
+        height: 500px; /* Un poco más corta en móvil */
+    }
 }

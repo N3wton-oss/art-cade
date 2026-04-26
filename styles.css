@@ -10,11 +10,14 @@ p {
     line-height: 1.6;
     letter-spacing: 0.5px;
 }
+
 body, html {
     background: #000; 
     color: #fff;
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Efecto CRT Scanlines Global */
@@ -44,6 +47,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 20px;
+    margin: 0;
 }
 
 .logo-header {
@@ -94,13 +98,13 @@ nav a {
 }
 
 /* --- SECCIONES --- */
-.section { display: flex; height: 450px; overflow: hidden;}
+.section { display: flex; min-height: 450px; overflow: hidden;}
 
 .section img {
     width: 50%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
-    image-rendering: pixelated; /* Píxeles nítidos */
+    image-rendering: pixelated;
 }
 
 .section-content {
@@ -116,7 +120,9 @@ nav a {
 .section-content h3 {
     font-size: 70px;
     text-shadow: 0 0 10px #ff00f2;
+    margin: 0 0 20px 0;
 }
+
 .section:nth-child(even) .section-content {
     background: rgba(139, 0, 0, 0.8); 
 }
@@ -125,9 +131,7 @@ nav a {
     background: #ffffff;
     color: #8b0000;
 }
-.section:nth-child(odd) h3 {
-    text-shadow: 0 0 10px #ff00f2;
-}
+
 .section:nth-child(even) h3 {
     text-shadow: 0 0 10px #00ff00;
     color: #00ff00;
@@ -149,8 +153,6 @@ nav a {
 .ticker-text {
     color: #ff00f2;
     font-size: 36px;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px #ff00f2, 0 0 20px #ff00f2;
     animation: parpadeo 1.5s infinite alternate;
 }
 
@@ -173,8 +175,91 @@ nav a {
 }
 
 .qr-box img { width: 140px; image-rendering: pixelated; }
+
 button {
     padding: 15px 30px !important; 
     font-size: 24px !important;    
-    min-width: 200px;              
+    min-width: 200px;
+    cursor: pointer;
+}
+
+/* =============================================
+   --- CONFIGURACIÓN PARA TELÉFONOS (MOBILE) ---
+   ============================================= */
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    header h1 {
+        font-size: 32px;
+        gap: 10px;
+    }
+
+    .logo-header {
+        height: 60px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav a {
+        margin: 0 10px;
+        font-size: 18px;
+    }
+
+    .banner {
+        height: auto;
+        min-height: 400px;
+        padding: 60px 20px;
+        justify-content: center;
+        text-align: center;
+        background-position: center;
+    }
+
+    .banner h2 {
+        font-size: 38px;
+    }
+
+    .qr-box {
+        display: none; /* Se oculta porque no tiene sentido en el mismo dispositivo */
+    }
+
+    .section {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .section img, .section-content {
+        width: 100%;
+    }
+
+    .section img {
+        height: 250px;
+    }
+
+    .section-content {
+        padding: 40px 20px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .section-content h3 {
+        font-size: 45px;
+    }
+
+    .ticker-text {
+        font-size: 24px;
+    }
+
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
 }
