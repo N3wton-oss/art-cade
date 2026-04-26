@@ -1,0 +1,295 @@
+/* --- GENERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'VT323', Arial, sans-serif;
+}
+
+body {
+    background: #0a0a0a;
+    color: #eee;
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 3px, 3px 100%; 
+    z-index: 9999; 
+    pointer-events: none;
+}
+
+
+body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(0, 0, 0, 0) 50%, 
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    pointer-events: none;
+    z-index: 9998; 
+}
+
+/* --- ENCABEZADO --- */
+header {
+    background: #111;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
+
+header::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0) 15%
+    );
+    pointer-events: none;
+    z-index: 10000; 
+}
+
+header h1 {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-header {
+    height: 60px;
+    width: auto;
+}
+
+nav a {
+    color: #bbb;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* --- SECCIÓN DE SELECCIÓN (CON IMAGEN DE FONDO) --- */
+.team-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/neo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(3px); 
+}
+
+.title-arcade {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 50px;
+    letter-spacing: 4px;
+    text-align: center;
+    animation: titleBlink 2s infinite ease-in-out;
+}
+
+@keyframes titleBlink {
+    0%, 100% {
+        color: #000080; 
+        text-shadow: 0 0 10px #000080, 0 0 20px #000080;
+    }
+    50% {
+        color: #00ffff; 
+        text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #00ffff;
+    }
+}
+
+.grid-items {
+    display: grid;
+    /* auto-fit permite que P6 y P7 suban si hay espacio lateral */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+    gap: 40px;
+    width: 95%;
+    max-width: 1100px;
+    justify-content: center; 
+    align-items: start;
+}
+
+/* --- CARTAS DE OBJETO --- */
+.item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.name-label {
+    font-size: 1.2rem;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.item-card:hover .name-label {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+.object-wrapper img {
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    animation: floating 3s infinite ease-in-out;
+}
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+.item-card:hover .object-wrapper img {
+    transform: translateY(-15px) scale(1.1) rotate(3deg);
+}
+
+/* --- BRILLOS TEMÁTICOS --- */
+.xbox-case:hover img    { filter: drop-shadow(0 0 25px #107C10); }
+.cd-case:hover img      { filter: drop-shadow(0 0 15px #ffb6c1); }
+.cassette:hover img     { filter: drop-shadow(0 0 15px #00f2ff); }
+.vhs-case:hover img     { filter: drop-shadow(0 0 15px #ff0055); }
+.gb-cartridge:hover img { filter: drop-shadow(0 0 15px #9dff00); }
+.memory-card:hover img  { filter: drop-shadow(0 0 15px #ffffff); }
+.floppy-disk:hover img  { filter: drop-shadow(0 0 15px #2200ff); }
+
+/* --- MODAL (EXPEDIENTE) --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 11000; /* Por encima de los efectos de pantalla */
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 950px;
+    padding: 40px;
+    position: relative;
+    animation: modalIn 0.3s ease-out;
+    /* Efecto de borde tipo gabinete */
+    box-shadow: inset 0 0 20px rgba(255,255,255,0.1);
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(30px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.profile-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.profile-aside {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.pixel-portrait {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1/1;
+    border: 4px solid currentColor;
+    object-fit: cover;
+    image-rendering: pixelated;
+}
+
+.profile-info {
+    flex: 2;
+}
+
+.profile-info h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+
+.info-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.block h3 {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+.text-content {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #eee;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* --- ESTILOS DE PERSONALIDAD --- */
+.style-alan { background: #111; border: 4px solid #107C10; color: #00ff00; }
+.style-nataly { background: #222; border: 4px solid #ffb6c1; color: #ffb6c1; }
+.style-paola { background: #111; border: 4px solid #00f2ff; color: #00f2ff; }
+.style-valeria { background: #111; border: 4px solid #ff0055; color: #ff0055; }
+.style-valeriam { background: #111; border: 4px solid #9dff00; color: #9dff00; }
+.style-irving { background: #111; border: 4px solid #ffffff; color: #ffffff; }
+.style-tu { background: #111; border: 4px solid #2200ff; color: #5555ff; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 850px) {
+    .grid-items { grid-template-columns: repeat(2, 1fr); }
+    .profile-layout { flex-direction: column; text-align: center; }
+    .profile-info h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+    .grid-items { grid-template-columns: 1fr; }
+    .title-arcade { font-size: 2rem; }
+}

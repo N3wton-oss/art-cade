@@ -1,0 +1,180 @@
+/* --- ESTILOS GENERALES --- */
+h1, h2, h3, .ticker-text, button {
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: 'Roboto Mono', monospace; 
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+body, html {
+    background: #000; 
+    color: #fff;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Efecto CRT Scanlines Global */
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 9999;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+}
+
+/* --- ENCABEZADO --- */
+header {
+    background: #111;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-header {
+    height: 100px;
+    width: auto;
+    image-rendering: pixelated;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+/* --- BANNER --- */
+.banner {
+    position: relative;
+    height: 500px;
+    background: url('https://64.media.tumblr.com/e1332cfd16af9755bca7cef14bf9dc8c/f11b60f153cc4817-ca/s2048x3072/5530e9d3b40630c7c8e7b3c8493c91f2b8589bf8.gifv') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+.banner-content { position: relative; z-index: 1; }
+
+.banner h2 {
+    font-size: 50px;
+    text-shadow: 0 0 10px #ff00f2, 0 0 20px #ff00f2;
+}
+
+.banner button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #863bf6;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* --- SECCIONES --- */
+.section { display: flex; height: 450px; overflow: hidden;}
+
+.section img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated; /* Píxeles nítidos */
+}
+
+.section-content {
+    width: 50%;
+    padding: 60px;
+    background: rgba(204, 53, 149, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-content h3 {
+    font-size: 70px;
+    text-shadow: 0 0 10px #ff00f2;
+}
+.section:nth-child(even) .section-content {
+    background: rgba(139, 0, 0, 0.8); 
+}
+
+.section:nth-child(even) button {
+    background: #ffffff;
+    color: #8b0000;
+}
+.section:nth-child(odd) h3 {
+    text-shadow: 0 0 10px #ff00f2;
+}
+.section:nth-child(even) h3 {
+    text-shadow: 0 0 10px #00ff00;
+    color: #00ff00;
+}
+
+/* --- TICKER --- */
+.ticker-container {
+    width: 100%;
+    height: 70px;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    overflow: hidden;
+}
+
+.ticker-text {
+    color: #ff00f2;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ff00f2, 0 0 20px #ff00f2;
+    animation: parpadeo 1.5s infinite alternate;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* --- QR --- */
+.qr-box {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 20px;
+    border-radius: 16px;
+    z-index: 2;
+}
+
+.qr-box img { width: 140px; image-rendering: pixelated; }
+button {
+    padding: 15px 30px !important; 
+    font-size: 24px !important;    
+    min-width: 200px;              
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art-Cade | Equipo</title>
+    <link rel="stylesheet" href="styles4.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="img/logo.png" alt="Logo Art-Cade" class="logo-header"> 
+            Art-Cade
+        </h1>
+        <nav>
+            <a href="Art-cade.html">Principal</a>
+            <a href="https://www.instagram.com/artcadezonade_vd/#">Contáctanos</a> 
+        </nav>
+    </header>
+
+    <section class="team-selection">
+        <h2 class="title-arcade">- SELECCIONA TU JUGADOR -</h2>
+        
+        <div class="grid-items">
+            <div class="item-card" onclick="openProfile('alan')">
+                <div class="object-wrapper xbox-case">
+                    <img src="img/A.jpg" alt="Alan">
+                </div>
+                <p class="name-label">[ P1: ALAN ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('nataly')">
+                <div class="object-wrapper cd-case">
+                    <img src="img/Natalia.png" alt="Nataly">
+                </div>
+                <p class="name-label">[ P2: NATALY ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('paola')">
+                <div class="object-wrapper cassette">
+                    <img src="img/Paola.png" alt="Paola">
+                </div>
+                <p class="name-label">[ P3: PAOLA ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('valeria')">
+                <div class="object-wrapper vhs-case">
+                    <img src="img/Valeria.png" alt="Valeria">
+                </div>
+                <p class="name-label">[ P4: VALERIA ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('valeriam')">
+                <div class="object-wrapper gb-cartridge">
+                    <img src="img/val m.png" alt="Valeria M">
+                </div>
+                <p class="name-label">[ P5: VALERIA M. ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('irving')">
+                <div class="object-wrapper memory-card">
+                    <img src="img/Ir.png" alt="Irving">
+                </div>
+                <p class="name-label">[ P6: IRVING ]</p>
+            </div>
+
+            <div class="item-card" onclick="openProfile('tu')">
+                <div class="object-wrapper floppy-disk">
+                    <img src="img/I.png" alt="Isaac">
+                </div>
+                <p class="name-label">[ P7: ISAAC ]</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-perfil" class="modal-overlay" onclick="handleOutsideClick(event)">
+        <div class="modal-content" id="content-perfil">
+            <button class="close-btn" onclick="closeProfile()">[ X ]</button>
+            
+            <div class="profile-layout">
+                <div class="profile-aside">
+                    <div class="portrait-container">
+                        <img id="p-img" src="" alt="Retrato del Integrante" class="pixel-portrait">
+                    </div>
+                </div>
+
+                <div class="profile-info">
+                    <h1 id="p-name">NOMBRE_JUGADOR</h1>
+                    <div class="info-blocks">
+                        <div class="block">
+                            <h3 id="p-title1">LOG_ACTIVIDAD</h3>
+                            <div id="p-text1" class="text-content"></div>
+                        </div>
+                        <div class="block">
+                            <h3 id="p-title2">DIRECTIVAS</h3>
+                            <div id="p-text2" class="text-content"></div>
+                        </div>
+                        <div class="block">
+                            <h3 id="p-title3">PROTOCOLO</h3>
+                            <div id="p-text3" class="text-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
